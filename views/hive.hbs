@@ -1,0 +1,16 @@
+<h1>{{title}}</h1>
+<div id="score-board">
+    {{#each players}}
+    <div class='player'>
+        <div>{{name}}</div>
+        <div class='score'>{{wins}}</div>
+        <form action="/hive/dec/{{name}}", method="POST" class='score-board-form'>
+            <input type="submit" value="-" id={{name}} class='score-board-btn'>
+        </form>
+        <form action="/hive/inc/{{name}}", method="POST" class='score-board-form'>
+            <input type="submit" value="+" id={{name}} class='score-board-btn'>
+        </form>
+    </div>
+    {{/each}}
+</div>
+{{> nav hive=true}}

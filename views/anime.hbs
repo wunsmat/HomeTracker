@@ -1,0 +1,41 @@
+<h1>{{title}}</h1>
+    <div class="container">
+        <form method="POST">
+            <input type="text" name="newAnime" placeholder="Anime Title" required>
+            <button formaction="/anime/add" type="submit">Add Anime</button>
+        </form>
+        <form method="POST">
+            <div id="anime-buttons">
+                <button formaction="/anime/complete" type="submit">Move to Completed</button>
+                <button formaction="/anime/watch" type="submit">Move to Watch</button>
+                <button formaction="/anime/remove" type="submit">Remove</button>
+            </div>
+            <div class="anime-list-container">
+                <h2>Anime to Watch</h2>
+                <ul class='anime-list' id='anime-watch-list'>
+                    {{#each anime}}
+                    {{#unless completed}}
+                    <li>
+                        <input type="checkbox" name="idSelect" value={{_id}}>
+                        <div>{{name}}</div>
+                    </li>
+                    {{/unless}}
+                    {{/each}}
+                </ul>
+            </div>
+            <div class="anime-list-container">
+                <h2>Completed Anime</h2>
+                <ul class='anime-list' id='anime-watch-list'>
+                    {{#each anime}}
+                    {{#if completed}}
+                    <li>
+                        <input type="checkbox" name="idSelect" value={{_id}}>
+                        <div>{{name}}</div>
+                    </li>
+                    {{/if}}
+                    {{/each}}
+                </ul>
+            </div>
+        </form>
+    </div>
+{{> nav anime=true}}
