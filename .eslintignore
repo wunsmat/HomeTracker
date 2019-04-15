@@ -1,3 +1,2 @@
-bin/*.js
 node_modules/*.js
 public/javascripts/jquery-3.3.1.min.js
