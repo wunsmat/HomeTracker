@@ -1,11 +1,15 @@
- <form action = "/login" method = "POST">
-  <div class="container">
-    <label for="uname"><b>Username</b></label>
-    <input type="text" placeholder="Enter Username" name="uname" required>
-
-    <label for="psw"><b>Password</b></label>
-    <input type="password" placeholder="Enter Password" name="psw" required>
-
-    <button type="submit">Login</button>
-  </div>
-</form> 
+<h1>Home Tracker</h1>
+<form action="/login" method="post">
+    <div>
+        <label>Username:</label>
+        <input type="text" name="name"/>
+    </div>
+    <div>
+        <label>Password:</label>
+        <input type="password" name="password"/>
+    </div>
+    <div>
+        <input type="submit" value="Log In"/>
+        <input formaction="/signup" type="submit" value="Sign Up"/>
+    </div>
+</form>

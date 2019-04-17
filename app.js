@@ -4,11 +4,14 @@ const path = require('path');
 const cookieParser = require('cookie-parser');
 const logger = require('morgan');
 const bodyParser = require('body-parser');
-const indexRouter = require('./routes/index');
+const loginRouter = require('./routes/login');
 const animeRouter = require('./routes/anime');
 const hiveRouter = require('./routes/hive');
 const hbs = require('hbs');
 const app = express();
+const passport = require('passport');
+const session = require('express-session');
+require('./util/passport');
 
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
@@ -22,16 +25,15 @@ app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json()); // support json encoded bodies
 app.use(bodyParser.urlencoded({ extended: true })); // support encoded bodies
+app.use(session({ secret: 'pikachu' }));
+app.use(passport.initialize());
+app.use(passport.session());
 
-// Make our db accessible to our router
 app.use(function(req,res,next){
     next();
 });
 
-const session = require('express-session');
-app.use(session({resave: true, saveUninitialized: true, secret: 'XCR3rsasa%RDHHH', cookie: { maxAge: 60000 }}));
-
-app.use('/', indexRouter);
+app.use('/', loginRouter);
 app.use('/anime', animeRouter);
 app.use('/hive', hiveRouter);
 
